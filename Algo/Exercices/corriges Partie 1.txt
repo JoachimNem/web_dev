@@ -1,0 +1,474 @@
+algorithme permutation
+variables
+	a,b,c : entier;
+debut
+	% afficher("Saisir un nombre (a) : "); %
+	% saisir(a); %
+	saisir("Saisir un nombre (a) : ", a);
+	saisir("Saisir un nombre (b) : ", b);
+	
+	c := a;
+	a <- b;
+	b := c;
+	
+	afficher(a, b);
+fin
+
+algoithme carre
+variables
+	nombre, carre : entier;
+	
+Debut
+	saisir("Saisir un nombre :", nombre);
+	% carre := nombre * nombre; %
+	% nombre := nombre * nombre %
+	afficher(nombre * nombre);
+Fin
+
+algorithme TTC
+
+varaibles 
+	prixHt, quantite, tva, total, totalHt, totalTaxe : entier
+
+debut
+	saisir("Saisir le prix hors taxe : ", prixHt);
+	saisir("Saisir la quantite : ", quantite);
+	saisir("Saisir le taux de TVA (entre 0 et 100) : ", tva);
+	
+	% totalHt := prixHt * quantite; %
+	
+	% total := totalHt + totalHt * tva / 100; %
+	% total := totalHt * (1 + tva / 100); %
+	
+	total := (prixHt + prixHt * tva / 100) * quantite;
+	
+	afficher("Le total de votre achat est de : ", total);
+fin
+
+algorithme 3.6
+variables 
+	age : entier;
+Debut
+	saisir("Saisir l'age : ", age);
+	si(age >= 12) 
+		afficher("cadet");
+	sinon si (age > 9)
+		afficher "minime";
+	sinon si (age > 7)
+		afficher "pupille";
+	sinon si (age > 5)
+		afficher "poussin";
+	sinon  
+		afficher "Hors catégorie";
+		  finsi
+		  finsi
+		  finsi
+	finsi
+	
+Fin
+
+algorithme secondes
+
+variables minutes, heures, secondes : entier
+
+debut
+	saisir("Saisir l'heure ", heures);
+	saisir("Saisir la minute ", minutes);
+	saisir("Saisir la seconde ", secondes);
+	
+	// secondes + 1  => depassement de 59 est possible
+	si (secondes = 59 et minutes = 59 et heures = 23) 
+		alors {
+			secondes := 0;
+			minutes := 0;
+			heures := 0;
+		}
+		sinon si(secondes = 59 et minutes = 59)
+			alors {
+				secondes := 0;
+				minutes := 0;
+				heures := heures + 1;
+			}
+			sinon si (secondes = 59)
+				alors {
+					secondes := 0;
+					minutes := minutes + 1;
+				}
+				sinon
+					secondes := secondes + 1;
+				  finsi
+			  finsi
+	finsi
+	
+	afficher("Dans une segonde il sera : ", heures , minutes, secondes),
+	
+
+fin
+
+algoithme copie
+
+varaibles 
+	copies :entier;
+	prix : réel;
+	
+Debut
+	saisir("nombre de copies : ", copies);
+	
+	si(copies < 11) {
+		prix := 0.1 * copies;
+	} sinon si (copies < 31) {
+				prix := 1 + (copies - 10) * 0.09; 
+			} sinon {
+					prix := 1 + (20 * 0.09) + (copies - 30) * 0.08;
+				}
+			finsi
+	finsi
+	afficher(prix);
+Fin
+
+
+algorithme impots
+
+varaibles
+	age : entier;
+	sexe : chaine de caractères;
+	estFemmeImposable, estHommeImposable : booléen;
+	
+Debut 
+	saisir(age, sexe);
+	estFemmeImposable := sexe = "F" et age > 18 et age < 35;
+	estHommeImposable := sexe = "H" et age > 20;
+	
+	si(estFemmeImposable ou estHommeImposable) {
+		afficher("Imposable");
+	} sinon {
+		afficher("Non imposable");
+		}
+	finsi
+Fin
+
+
+
+
+Algorithme elections
+variables 
+	c1, c2, c3, c4 : réel;
+	estElimine, estFavorable :booléen;
+Debut
+	saisir("Saisir les scores :"c1, c2, c3, c4);
+	estElimine := c2 > 50 ou c3 > 50 ou c4 > 50 ou c1 < 12.5;
+	estFavorable := c1 > c2 et c1 > c3 et c1 > c4;
+	si(estElimine){
+		afficher("Candidat 1 battu");
+	} sinon si (c1 > 50){
+				afficher("Candidat 1 élu");
+			} sinon si(c1 >= 12.5 et estFavorable){
+						afficher("Deuxieme tour en ballottage favorable");
+					} sinon si (c1 >= 12.5){
+						afficher("Deuxieme tour en ballottage défavorable");
+							}
+Fin
+
+
+
+
+
+
+
+
+
+
+Algorithme date_valide
+
+variables 
+	jour, mois, annee : entier;
+	estBisextile, estDateBisextileInvalide, 
+	estDateMois30Invalide : booléen;
+Debut
+	saisir("Saisir la date :"jour, mois, annee);
+	estBisextile := (annee % 4 = 0 et annee % 100 != 0) ou annee % 400 = 0;
+	estDateBisextileInvalide := mois = 2 et ((estBisextile et jours > 29) ou (!estBisextile et jours > 28))
+	estDateMois30Invalide := jours > 30 et (mois = 4 ou mois = 6 ou mois = 9 ou mois = 11);
+	si (jours > 31 ou mois > 12 ou 
+		ou estDateBisextileInvalide
+		ou estDateMois30Invalide
+		) {
+		afficher("date invalide");
+	} sinon {
+		afficher("date valide");
+	}	
+Fin
+
+algorithme 5.1
+variables
+	nombre : entier;
+	estCorrect: booléen;
+debut
+	// solution qui ne fonctionne pas toujours (boucle infinie)
+	 /% saisir(nombre);
+	estCorrect := nombre >=1 et nombre <=3;
+	
+	tantque(!estCorrect)faire
+		saisir(nombre);
+	fin_tantque %/
+	
+	// meilleure solution
+	répéter 
+		saisir("Saisir un nombre :", nombre);
+	jusqu'à (nombre >=1 et nombre <= 3)
+	afficher("Vous avez saisi le bon nombre");
+fin
+	
+algorithme 5.2
+variables
+	nombre : entier;
+debut
+	répéter
+		saisir("Saisir un nombre :", nombre);
+		si(nombre > 20) {
+			afficher("plus petit !");
+		} sinon si(nombre < 10) {
+			afficher("plus grand !");
+		}
+	jusqu'a(nombre >= 10 et nombre <= 20);
+	afficher("HOULA !!");
+fin
+
+algoithme 5.3
+variables 
+	nombre, i : entier;
+Debut
+
+	pour(i := 1; i <= 10; i++) faire
+		afficher(nombre + i);
+	fin_pour
+Fin
+
+algorithme 5.5
+variables
+	nombre, i, resultat : entier;
+debut
+	saisi("Saisir un nombre ", nombre);
+	resultat := 0;
+	pour (i:=1; i<=nombre; i++) faire
+		resultat := resultat + i;
+	fin_pour
+	afficher(resultat);
+	
+fin
+
+algorithme 5.6
+variables
+	nombre, i, resultat : entier;
+debut
+	saisi("Saisir un nombre ", nombre);
+	resultat := 1;
+	pour(i:=2; i<= nombre; i++)faire
+		resultat := resultat * i;
+	fin_pour
+	
+fin
+ -3 -8 -2   =>  pour -3, max = -3, pour -8, max = -3, pour -2, max = -2
+
+algorithme 5.7
+variables 
+	nombre, i, max, indiceMax : entier;
+constantes 
+	NBR_NOMBRES := 20;
+Debut
+	pour(i:=1; i<=NBR_NOMBRES; i++)faire
+		saisir("Saisir un nombre : ", nombre);
+		si(i = 1) {
+			max := nombre;
+			indiceMax := 1;
+		}
+		si(nombre > max){
+			max := nombre;
+			indiceMax := i;
+		}
+	fin_pour
+	afficher("LA plus grande valeur est : ", max);
+Fin
+
+algorithme 5.8
+variables 
+	nombre, i, max, indiceMax : entier;
+Debut
+	i := 1;
+	répéter {
+		saisir("Saisir un nombre : ", nombre);
+		si(nombre != 0){
+			si(i = 1) {
+			max := nombre;
+			indiceMax := 1;
+			}
+			si(nombre > max){
+				max := nombre;
+				indiceMax := i;
+			}
+			i++;
+		}
+		
+	} jusqu'a (nombre = 0);
+	si(nombre = 0){
+		afficher("Vous avez quittez le programme.");
+	}sinon {	
+		afficher("La plus grande valeur est : ", max, );
+	}
+Fin
+
+algorithme 5.9
+variables 
+	prix, somme, paiement, rendu : entier;
+debut
+	somme := 0;
+	répéter {
+		saisir("Saisir le prix : ", prix);
+		somme := somme + prix;
+		
+	} jusqu'a (prix = 0);
+	Afficher("La somme est de ", somme);
+	
+	saisir("Saisir le paiement ", paiement);
+	rendu := paiement - somme;
+	
+	tantque(rendu > 0) faire
+		si(rendu >= 10){
+			afficher("10 €");
+			rendu := rendu - 10;
+		} sinon si(rendu >= 5){
+			afficher("5 €");
+			rendu := rendu - 5;
+		} sinon {
+			afficher("1 €");
+			rendu := rendu - 1;
+		}
+	fin_tantque	
+fin
+
+algorithme exo 5.10
+variables 
+	n, p, factorielleN, factorielleP, factorielleNP, i : entier
+	x, y : réel;
+Debut
+	saisir("Saisir le nombre de chevaux partants : ", n);
+	saisir("Saisir le nombre de chevaux joués : ", p);
+	
+	factorielleNP := 1;
+	pour(i := 2, i <= (n - p); i++)faire
+		factorielleNP := factorielleNP * i;  % 10 %
+	fin_pour
+	
+	factorielleP := factorielleNP;
+	pour(i := p, i > (n - p); i--)faire
+		factorielleP := factorielleP * i;
+	fin_pour
+	
+	factorielleN := factorielleP;
+	pour(i := n, i > p; i--)faire
+		factorielleN := factorielleN * i;
+	fin_pour
+		
+	x := factorielleN / factorielleNP;
+	y := x /factorielleP;
+	
+	afficher("Dans l'ordre, une chance sur ", x, " de gagner");
+	afficher("Dans le désordre, une chance sur ", y, " de gagner");
+Fin
+
+algo tierce_2
+variables
+	n, p, factorielleP, x, y, i, np :entier;
+debut
+	saisir(n, p);
+	x := 1;
+	np := n - p;  
+	factorielleP := 1;
+	pour(i := 1, i <= p, i++) faire
+		x := x * (np + i);
+		factorielleP := factorielleP * i;
+	fin_pour
+	y := x / factorielleP;
+	afficher("Dans l'ordre, une chance sur ", x, " de gagner");
+	afficher("Dans le désordre, une chance sur ", y, " de gagner");
+fin	
+	
+
+
+algorithme tableau_multiplication
+variables
+	i, j : entier;
+Debut
+	pour(j := 1, j <= 10, j++) faire
+		pour(i := 1, i <= 10, i++) faire
+			afficher(j, " x ", i, " = ", j * i, "\n");
+		fin_pour
+		afficher("----------------- \n");
+	fin_pour
+Fin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

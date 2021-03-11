@@ -1,0 +1,18 @@
+P {
+  color: rgb(34, 141, 75);
+  font-size: 25px;
+}
+li {
+  color: rgb(141, 134, 34);
+  font-size: 25px;
+}
+pan {
+  color: rgb(141, 34, 34);
+  font-size: 25px;
+}
+.img-flottante {
+  float: right;
+}
+background-color {
+  color: rgb(0, 0, 0);
+}

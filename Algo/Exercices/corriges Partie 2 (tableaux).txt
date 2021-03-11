@@ -1,0 +1,229 @@
+algorithme 6.1
+variables
+	numeros(7): tableau d'entiers;
+	i : entier;
+Debut
+	pour i:= 0 à 6 faire
+		numeros(i) := 0;
+	fin_pour
+	
+Enfin
+
+algorithme 6.2
+variables
+	voyelles(6): tableau de string;
+Debut
+	voyelles(0) := "A";
+	voyelles(1) := "O";
+	voyelles(2) := "E";
+	voyelles(3) := "I";
+	voyelles(4) := "U";
+	voyelles(5) := "Y";
+	
+Enfin
+
+algorithme 6.3
+variables
+	notes(9): tableau d'entiers;
+	i : entier;
+Debut
+	pour i:= 0 à 8 faire
+		saisir("Saisir une note : ", notes(i));
+	fin_pour
+fin
+
+0  | 1  |  4  |  9 | 16 |  25  |
+algorithme 6.4
+variables 
+	NB(5) : tableau d'entiers;
+	i : entier;
+Debut
+	pour i := 0 à 5 faire
+		NB(i) := i * i;
+		afficher(NB(i));
+	fin_pour
+Fin
+	
+
+
+
+1  | 3  |  5  |  7 |  9 |  11  |
+algorithme 6.5
+variables 
+	N(6) : tableau d'entiers;
+	i : entier;
+Debut
+	N(0) := 1;
+	afficher(N(0));
+	pour i := 1 à 5 faire
+		N(i) := N(i - 1) + 2;
+		afficher(N(i));
+	fin_pour
+Fin
+
+execice 6.6 :
+
+1, 1, 2, 3, 5, 8, 13
+
+
+algorithme 6.7
+variables
+	notes(9): tableau d'entiers;
+	i : entier;
+	moyenne : réel;
+constantes
+	TAILLE_TABLEAU := 9;
+Debut
+	somme := 0;
+	pour i:= 0 à (TAILLE_TABLEAU - 1) faire
+		saisir("Saisir une note : ", notes(i));
+		somme := somme + notes(i);
+	fin_pour
+	moyenne := somme / TAILLE_TABLEAU;
+	affiche(moyenne);
+fin
+
+algorithm 6.8
+variables
+	values(): array of float;
+	i, arraySize, value, negativeCount, positiveCount : integer;
+
+Begin
+	negativeCount := 0;
+	positiveCount := 0;
+	display("Type the number of cells :", arraySize);
+	redim(values, arraySize);
+	for(i := 0, i <= arraySize, i++)do
+		type("Enter the value : ", value);
+		if(value > 0){
+			positiveCount++;
+		} else if(value < 0){
+			negativeCount++;
+		}
+	end_for
+	display("There are ", positiveCount, " positive numbers.");
+	display("There are ", negativeCount, " negative numbers.");
+End
+
+
+algorithme 6.10
+variables
+	arraySize, i : integer;
+	array1(), array2(), array3() : array of integers;
+Begin
+	prompt("Type the arrays size : ", arraySize);
+	redim(array1, arraySize);
+	redim(array2, arraySize);
+	redim(array3, arraySize);
+	
+	for(i := 0, i < arraySize; i++){
+		array3(i) := array1(i) + array2(i);
+	}
+End
+
+
+algorithm 6.11
+variables
+	i, j, array1Size, array2Size : integer;
+	array1(), array2(): array of integer;
+Begin
+	schtroumpf := 0;
+	for(i := 0, i < array2Size; i++){
+		for(j := 0, j < array1Size, j++){
+			schtroumpf : = schtroumpf + array1(j) * array2(i);
+		}
+	}
+	display(schtroumpf);
+End
+
+algorithm 6.13
+variables 
+	tab() : array of integers;
+	i, arraySize, max, maxIndex : entier
+Begin
+	prompt(arraySize);
+	redim(tab, arraySize);
+	
+	for(i := 0, i < arraySize; i++){
+		prompt("Saisir la valeur ", tab(i));
+		if(i = 0){
+			max := tab(i);
+			maxIndex := 0;
+		} else if (tab(i) > max){
+			max := tab(i);
+			maxIndex := i;
+		}
+	}
+	display("The greater number is ", max, " is at ", maxIndex);
+End
+
+algorithme 6.14 
+variables 
+	marks() : array of integer;
+	i, arraySize, count : integer;
+	moyenneClasse : real;
+Begin
+	prompt("Type marks count : ", arraySize);
+	redim(marks, arraySize);
+	somme := 0;
+	for(i := 0; i < arraySize, i++){
+		prompt("Type the mark n° ", i, " : ", marks(i));
+		somme := somme + marks(i);
+	}
+	moyenneClasse := somme / arraySize;
+	count := 0;
+	for(i := 0; i < arraySize, i++){
+		if(marks(i) >= moyenneClasse){
+			count++; % count := count + 1;  count += 1%
+		}
+	}
+	display("There are ", count, " marks greater then the classe mark average");
+End
+
+algorithme tri_tableau
+variables 
+	tab() : array of integer;
+	i, j, min, indexMin, temp : integer;
+Begin
+	prompt(size);
+	redim(tab, size);
+	for(i := 0, i < (size - 1), i++){
+		min := tab(i);
+		indexMin := i;
+		for(j := i + 1, j < size, j++){
+			if(tab(j) < min){
+				indexMin := j;
+			}
+		}
+		temp := tab(i);
+		tab(i) := tab(indexMin);
+		tab(indexMin) := temp;
+	}
+End
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
