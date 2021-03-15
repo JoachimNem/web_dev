@@ -1,12 +1,15 @@
-récupérer première utilisation: 
+Récupérer première utilisation: 
 git clone
 
 
 Pour envoyer des modifs: 
-git add*
-git commit -m "infos sur la modif (sans les "") "
-git push
+git add *
+git commit -m "infos sur la modif"
+git push origin master
 
 
 Pour recevor les modifs: 
 git pull --rebase origin master
+
+Modifier l'endroit de récupération du fichier:
+cd C:\Users\59013-18-05\Desktop\Web_dev\PHP\PHP_IO\Exercices
