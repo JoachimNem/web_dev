@@ -1,0 +1,12 @@
+récupérer première utilisation: 
+git clone
+
+
+Pour envoyer des modifs: 
+git add*
+git commit -m "infos sur la modif (sans les "") "
+git push
+
+
+Pour recevor les modifs: 
+git pull --rebase origin master
