@@ -8,7 +8,7 @@ git commit -m "infos sur la modif"
 git push origin master
 
 
-Pour recevor les modifs: 
+Pour recevoir les modifs: 
 git pull --rebase origin master
 
 Modifier l'endroit de récupération du fichier:

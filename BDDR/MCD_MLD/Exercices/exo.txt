@@ -1,0 +1,6 @@
+I Le modèle conceptuel de données
+
+client 0,n commander 0,n produit type non hiérarchique
+salarié 1,1 etre affecté 1,n service type hiérarchique
+personne 0,n posséder 1,1 voiture type hiérarchique
+ville 1,1 capitale de 1,1 pays type hiérarchique
