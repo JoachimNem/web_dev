@@ -33,28 +33,30 @@ class EmployeDAO extends Commun
         return $tabEmps;
     }
 
-    public function tableau_Sup()
-    {
-        $bdd = mysqli_init();
-        mysqli_real_connect($bdd, "localhost", "admin", "", "gestion_employe");
-        $resultat = mysqli_query($bdd, "SELECT DISTINCT sup FROM EMPLOYES WHERE sup IS NOT NULL;");
-        $tableau_Sup = mysqli_fetch_all($resultat, MYSQLI_ASSOC);
-        mysqli_free_result($resultat);
-        mysqli_close($bdd);
-        return $tableau_Sup;
-    }
-    public function insert(Employe $obj)
+    public function tabSup(): array
     {
         $mysqli = parent::connexionBdd();
-        // $id = ;
-        $nom = $obj->getNom();
-        $prenom = $obj->getPrenom();
-        $emploi = $obj->getEmploi();
-        $sup = $obj->getSup();
-        $embauche = $obj->getEmbauche();
-        $sal = $obj->getSal();
-        $comm = $obj->getComm();
-        $noserv = $obj->getNoserv();
+        $stmt = $mysqli->prepare("SELECT DISTINCT sup FROM employes;");
+        $stmt->execute();
+        $rs = $stmt->get_result();
+        $tabSup = $rs->fetch_all(MYSQLI_ASSOC);
+        $rs->free();
+        $mysqli->close();
+        return $tabSup;
+    }
+
+
+    public function insertEmp(Employe $objet)
+    {
+        $mysqli = parent::connexionBdd();
+        $nom = $objet->getNom();
+        $prenom = $objet->getPrenom();
+        $emploi = $objet->getEmploi();
+        $sup = $objet->getSup();
+        $embauche = $objet->getEmbauche();
+        $sal = $objet->getSal();
+        $comm = $objet->getComm();
+        $noserv = $objet->getNoserv();
         $stmt = $mysqli->prepare("INSERT INTO employes(noemp, nom, prenom, emploi, sup, embauche, sal, comm, noserv)
         VALUES(?,?,?,?,?,?,?,?);");
         $stmt->bind_param(
@@ -81,17 +83,17 @@ class EmployeDAO extends Commun
         $stmt->execute();
         $mysqli->close();
     }
-    public function updateEmp(Employe $obj, int $noemp)
+    public function updateEmp(Employe $objet)
     {
         $mysqli = parent::connexionBdd();
-        $nom = $obj->getNom();
-        $prenom = $obj->getPrenom();
-        $emploi = $obj->getEmploi();
-        $sup = $obj->getSup();
-        $embauche = $obj->getEmbauche();
-        $sal = $obj->getSal();
-        $comm = $obj->getComm();
-        $noserv = $obj->service->setService();
+        $nom = $objet->getNom();
+        $prenom = $objet->getPrenom();
+        $emploi = $objet->getEmploi();
+        $sup = $objet->getSup();
+        $embauche = $objet->getEmbauche();
+        $sal = $objet->getSal();
+        $comm = $objet->getComm();
+        $noserv = $objet->service->setService();
         $stmt = $mysqli->prepare("UPDATE employes SET 
         nom=?,
         prenom=?,
@@ -140,17 +142,5 @@ class EmployeDAO extends Commun
 
         $mysqli->close();
         return $obj;
-    }
-
-    function listeChef()
-    {
-        $mysqli = parent::connexionBdd();
-        $stmt = $mysqli->prepare("SELECT DISTINCT sup FROM employes;");
-        $stmt->execute();
-        $rs = $stmt->get_result();
-        $tabSup = $rs->fetch_all(MYSQLI_ASSOC);
-        $rs->free();
-        $mysqli->close();
-        return $tabSup;
     }
 }
