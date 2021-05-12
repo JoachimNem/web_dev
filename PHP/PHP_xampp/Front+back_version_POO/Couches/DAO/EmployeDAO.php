@@ -1,6 +1,8 @@
 <?php
 
 include_once(__DIR__ . "/../model/Employe.php");
+include_once(__DIR__ . "/Common.php");
+
 
 class EmployeDAO extends Commun
 {
@@ -57,11 +59,10 @@ class EmployeDAO extends Commun
         $sal = $objet->getSal();
         $comm = $objet->getComm();
         $noserv = $objet->getNoserv();
-        $stmt = $mysqli->prepare("INSERT INTO employes(noemp, nom, prenom, emploi, sup, embauche, sal, comm, noserv)
+        $stmt = $mysqli->prepare("INSERT INTO employes(nom, prenom, emploi, sup, embauche, sal, comm, noserv)
         VALUES(?,?,?,?,?,?,?,?);");
         $stmt->bind_param(
-            "isssisddi",
-            $id,
+            "sssisddi",
             $nom,
             $prenom,
             $emploi,
@@ -127,7 +128,7 @@ class EmployeDAO extends Commun
         $rs = $stmt->get_result();
         $tabEmploye = $rs->fetch_array(MYSQLI_ASSOC);
 
-        $obj = new Employe;
+        $obj = new Employe();
         $obj->setNoemp($tabEmploye["noemp"]);
         $obj->setNom($tabEmploye["nom"]);
         $obj->setPrenom($tabEmploye["prenom"]);
